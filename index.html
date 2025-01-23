@@ -1,0 +1,266 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Puzzle</title>
+    <style>
+        h1{
+            text-align: center;
+        }
+        .Aven {
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+            height: 100vh;
+        }
+
+        .photo {
+            display: grid;
+            grid-template-columns: repeat(3, 150px);
+        }
+
+        .photo img {
+            width: 150px;
+            height: 150px;
+        }
+
+        .origin img {
+            width: 600px;
+            height: auto;
+        }
+
+        #h {
+            display: none;
+        }
+
+        .msg {
+            display: none;
+            position: relative;
+            z-index: 1;
+        }
+
+        .m {
+            position: absolute;
+            background-color: white;
+            border: 1px solid #888;
+            color: red;
+            text-align: center;
+            font-size: 20px;
+            border-radius: 10px;
+            display: none;
+        }
+
+        .hi {
+            width: 400px;
+            height: 60px;
+            background-color: #fefefe;
+        }
+
+        .close {
+            color: #aaa;
+            float: right;
+            font-size: 18px;
+            font-weight: bold;
+            background-color: purple;
+            padding: 5px 8px 5px 8px;
+            border-radius: 30px;
+        }
+
+        .close:hover,
+        .close:focus {
+            color: black;
+            text-decoration: none;
+            cursor: pointer;
+        }
+
+        h3 {
+            display: block;
+            font-size: 30px;
+            color: red;
+            margin-left: 100px;
+        }
+
+        button {
+            width: 80px;
+            height: 50px;
+            background-color: aqua;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>Image Puzzle</h1>
+    <div class="Aven">
+        <div id="msg" class="m">
+            <div class="hi">
+                <span class="close">&times;</span>
+                <h2 id="xwin"></h2>
+            </div>
+        </div>
+        <div class="photo">
+            <img src="6.jpg" alt="" id="h1" onclick="move(1)">
+            <img src="2.jpg" alt="" id="h2" onclick="move(2)">
+            <img src="8.jpg" alt="" id="h3" onclick="move(3)">
+            <img src="4.jpg" alt="" id="h4" onclick="move(4)">
+            <img src="1.jpg" alt="" id="h5" onclick="move(5)">
+            <img src="7.jpg" alt="" id="h6" onclick="move(6)">
+            <img src="5.jpg" alt="" id="h7" onclick="move(7)">
+            <img src="3.jpg" alt="" id="h8" onclick="move(8)">
+            <img src="blank.jpg" alt="" id="h9" onclick="move(9)">
+            <img src="9.jpg" alt="" id="h">
+        </div>
+        <button type="reset" onclick="Reset()">Reset</button>
+        <div class="origin">
+            <img src="pokeman.jpg" alt="" id="odd">
+        </div>
+    </div>
+    <script>
+        function move(num) {
+            let h1 = document.getElementById('h1');
+            let h2 = document.getElementById('h2');
+            let h3 = document.getElementById('h3');
+            let h4 = document.getElementById('h4');
+            let h5 = document.getElementById('h5');
+            let h6 = document.getElementById('h6');
+            let h7 = document.getElementById('h7');
+            let h8 = document.getElementById('h8');
+            let h9 = document.getElementById('h9');
+
+            switch (num) {
+                case 1:
+                    if (h4.src.includes("blank.jpg")) {
+                        swap(h1, h4);
+                    } else if (h2.src.includes("blank.jpg")) {
+                        swap(h1, h2);
+                    }
+                    break;
+                case 2:
+                    if (h5.src.includes("blank.jpg")) {
+                        swap(h2, h5);
+                    } else if (h3.src.includes("blank.jpg")) {
+                        swap(h2, h3);
+                    } else if (h1.src.includes("blank.jpg")) {
+                        swap(h2, h1);
+                    }
+                    break;
+                case 3:
+                    if (h6.src.includes("blank.jpg")) {
+                        swap(h3, h6);
+                    } else if (h2.src.includes("blank.jpg")) {
+                        swap(h3, h2);
+                    }
+                    break;
+                case 4:
+                    if (h5.src.includes("blank.jpg")) {
+                        swap(h4, h5);
+                    } else if (h1.src.includes("blank.jpg")) {
+                        swap(h4, h1);
+                    } else if (h7.src.includes("blank.jpg")) {
+                        swap(h4, h7);
+                    }
+                    break;
+                case 5:
+                    if (h8.src.includes("blank.jpg")) {
+                        swap(h5, h8);
+                    } else if (h6.src.includes("blank.jpg")) {
+                        swap(h5, h6);
+                    } else if (h4.src.includes("blank.jpg")) {
+                        swap(h5, h4);
+                    } else if (h2.src.includes("blank.jpg")) {
+                        swap(h5, h2);
+                    }
+                    break;
+                case 6:
+                    if (h5.src.includes("blank.jpg")) {
+                        swap(h6, h5);
+                    } else if (h3.src.includes("blank.jpg")) {
+                        swap(h6, h3);
+                    } else if (h9.src.includes("blank.jpg")) {
+                        swap(h6, h9);
+                    }
+                    break;
+                case 7:
+                    if (h8.src.includes("blank.jpg")) {
+                        swap(h7, h8);
+                    } else if (h4.src.includes("blank.jpg")) {
+                        swap(h7, h4);
+                    }
+                    break;
+                case 8:
+                    if (h9.src.includes("blank.jpg")) {
+                        swap(h8, h9);
+                    } else if (h7.src.includes("blank.jpg")) {
+                        swap(h8, h7);
+                    } else if (h5.src.includes("blank.jpg")) {
+                        swap(h8, h5);
+                    }
+                    break;
+                case 9:
+                    if (h8.src.includes("blank.jpg")) {
+                        swap(h9, h8);
+                    } else if (h6.src.includes("blank.jpg")) {
+                        swap(h9, h6);
+                    }
+                    break;
+            }
+            checkWin();
+        }
+
+        function swap(img1, img2) {
+            let tempSrc = img1.src;
+            img1.src = img2.src;
+            img2.src = tempSrc;
+        }
+
+        function checkWin() {
+            if (
+                document.getElementById("h1").src.includes("1.jpg") &&
+                document.getElementById("h2").src.includes("2.jpg") &&
+                document.getElementById("h3").src.includes("3.jpg") &&
+                document.getElementById("h4").src.includes("4.jpg") &&
+                document.getElementById("h5").src.includes("5.jpg") &&
+                document.getElementById("h6").src.includes("6.jpg") &&
+                document.getElementById("h7").src.includes("7.jpg") &&
+                document.getElementById("h8").src.includes("8.jpg") &&
+                document.getElementById("h9").src.includes("blank.jpg")
+            ) {
+                alert("Congratulations! You solved the puzzle!");
+                document.getElementById('h9').src = document.getElementById('h').src;
+
+                var x = document.getElementById("xwin");
+                x.innerText = "Congrats! You Win";
+                var c = document.getElementById("msg");
+                c.style.display = "block";
+                var ctn = document.getElementsByClassName("close")[0];
+                ctn.onclick = function () {
+                    c.style.display = "none";
+                };
+            }
+        }
+
+        function Reset() {
+            document.getElementById("h1").src = "6.jpg";
+            document.getElementById("h2").src = "2.jpg";
+            document.getElementById("h3").src = "5.jpg";
+            document.getElementById("h4").src = "4.jpg";
+            document.getElementById("h5").src = "8.jpg";
+            document.getElementById("h6").src = "7.jpg";
+            document.getElementById("h7").src = "3.jpg";
+            document.getElementById("h8").src = "1.jpg";
+            document.getElementById("h9").src = "blank.jpg";
+
+            var x = document.getElementById("xwin");
+            x.innerText = "Your puzzle has been reset!";
+            var c = document.getElementById("msg");
+            c.style.display = "block";
+            var ctn = document.getElementsByClassName("close")[0];
+            ctn.onclick = function () {
+                c.style.display = "none";
+            };
+        }
+    </script>
+</body>
+
+</html>
