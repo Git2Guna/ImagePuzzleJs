@@ -1,0 +1,139 @@
+body {
+    margin: 0;
+    background-image: url("/images/pokie.png");
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    min-height: 100vh;
+    font-family: Arial, sans-serif;
+    overflow: hidden;
+    transition: background 0.5s ease;
+}
+
+h1 {
+    text-align: center;
+    color: yellow;
+    margin: 0;
+    padding: 10px;
+}
+
+.Aven {
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    min-height: calc(100vh - 60px);
+    gap: 40px;
+    padding: 20px;
+    flex-wrap: wrap;
+    position: relative;
+}
+
+.photo {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+}
+
+.photo img {
+    width: 130px;
+    height: 120px;
+    cursor: pointer;
+    display: block;
+}
+
+.origin {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.origin img {
+    width: 385px;
+    height: 360px;
+    border: 2px solid #888;
+}
+
+#h {
+    display: none;
+}
+
+.button-container {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    margin-top: 20px;
+}
+
+.reset-btn {
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+}
+
+.reset-btn:hover {
+    transform: scale(1.2);
+}
+
+.icon-img {
+    width: 40px;
+    height: 40px;
+}
+
+#winOverlay {
+    display: none;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 300px;
+    z-index: 999;
+    pointer-events: none;
+}
+
+/* ===== RESPONSIVE STYLES ===== */
+@media (max-width: 1024px) {
+    .photo img {
+        width: 100px;
+        height: 100px;
+    }
+
+    .origin img {
+        width: 300px;
+        height: auto;
+    }
+
+    #winOverlay {
+        width: 250px;
+    }
+}
+
+@media (max-width: 768px) {
+    .photo img {
+        width: 80px;
+        height: 80px;
+    }
+
+    .origin img {
+        width: 240px;
+        height: auto;
+    }
+
+    #winOverlay {
+        width: 180px;
+    }
+}
+
+@media (max-width: 480px) {
+    .photo img {
+        width: 60px;
+        height: 60px;
+    }
+
+    .origin img {
+        width: 150px;
+        height: auto;
+    }
+
+    #winOverlay {
+        width: 140px;
+    }
+}
